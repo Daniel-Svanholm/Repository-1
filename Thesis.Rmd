@@ -1,0 +1,1055 @@
+---
+title: "Time-varying Taylor rule for Hungary; a State-Space approach"
+author: "Daniel Svanholm"
+date: "X/XX/2020"
+output: 
+  pdf_document:
+  fontsize: 12pt
+  toc: no
+  number_sections: yes
+  pdf: default
+---
+
+\begin{center} Södertörn University | Institution of Social Sciences \end{center}
+
+\begin{center} Supervisor: Xiang Lin \end{center}
+
+
+\begin{center} Examiner: Stig Blomskog \end{center}
+
+
+\newpage{}
+
+\tableofcontents{}
+
+\newpage{}
+
+# Abstract
+text
+
+\newpage{}
+
+# Introduction
+
+*In the absence of the gold standard, there is no way to protect savings from confiscation through inflation. There is no safe store of value* – Alan Greenspan 
+
+Macroeconomic stability is historically not commonly associated with central European economies, the most obvious being the inflationary example of the Weimar Republic of Germany during the interwar years. Continental and especially central/eastern Europe has been the melting pot for important economic and political events throughout the twentieth century. Two world wars and powerful clashes between political and economic systems, have rocked the macroeconomic stability of emerging economies in central Europe and helped shape what can be observed today. 
+
+One significant part of the rapidly growing emerging economies in central Europe is Hungary, the third largest of the Visegrad Group (or V4). A nation which suffered tremendously due to the Trianon Treaty, losing nearly 75% of its territories, more than half its populace and forced to pay massive reparations to foreign powers during the first half of the century (Britannica, 2020).
+
+The following decades of Soviet occupation after the Axis defeat in 1945, which stripped the country of its resources, decimated its infrastructure and instituted heavy industries with no regard for domestic Hungarian needs or suitability for production. After the revolution of 1956 Hungary slowly regained its independence and began market and economic reforms, including restructuring of the banking system, which would not gain any real effect until the 1980s. However, the spirit of economic development continued with increased privatisations, initiatives for voluntary export and trade with Hungary's neighbours and new found post war allies. 
+
+With low output growth and high inflation being present for the majority of the post revolutionary Hungarian republic, the importance of trade and economic aid, with guidance for economic development was essential. Transitioning from a planned economy to a market economy aided in providing the means of remedying the problems created by the former. Since the introduction of further economic policies in the 1980s, the GDP growth per-capita in Hungary increased significantly, with gradual disinflation to accompany it. 
+
+Obviously, the restructuring of the Hungarian economy has proved successful compared to the previous predicament of reversed flow of output growth and price levels. This creates an opportunity to descriptively explore how this gradual successful transition was achieved, through economic theory and application. Not only for the advancement of understanding the particular situation of Hungary, but to further generate knowledge that may aid the development of other economies in similar or comparable stages of development today or in the future. 
+
+During the early 2000s, the central bank of Hungary (Magyar Nemetzi Bank or MNB) enjoyed a dual goal of maintaining price stability along a semi-fixed exchange rate to the Euro, with inflation targeting adopted in 2001 (MNB, 2020). However, in 2008 the MNB and the Hungarian government elected to let the exchange rate float, in favour of only maintaining price stability by explicit inflation targeting (MNB, 2020). It was also decided that management of the exchange rate is to be in accordance with both the government and the monetary council presiding over  MNB. This commitment to price stability provides a point of inquiry when examining how monetary policy by the MNB has achieved its goal of price stability.
+
+## Problem statement:
+ 
+The feasible goals of monetary authorities is usually characterized by macroeconomic stability at or close to desired levels of inflation, output and unemployment among other important variables. Aside from the long run equilibrium of economic theory, these indicators are rarely at the desired levels of the monetary authorities in the economy and become more complicated as international trade impacts the stability of individual economies. Macroeconomic instability is therefore an important point of study, both in evaluation of monetary policy ex post and to anticipate monetary policy ex ante in both developed and emerging economies.
+
+The economist John B Taylor (Taylor, 1993) attempted to describe how monetary authorities could achieve macroeconomic stability for a closed economy, with considerations to a set of minimalist economic indicators. These indicators assume that the monetary authorities practices active monitoring of domestic economic conditions and employs some degree of inflation targeting. Creating a simple rule for monetary authorities to determine the level of the nominal interest rate, which Taylor perceived as the main tool of monetary authorities for regulating and achieving macroeconomic stability. 
+
+Below is the traditional Taylor rule constructed by Taylor in 1993, with inflation and output gaps without a lagged nominal interest rate which were added in his 1999 revision.
+
+| $i_{t} = r + a(\pi_{t} - \pi^{*}) + b(y_{t} - y^{*})$
+
+The weights proposed by Taylor (a) and (b) originally equal 0,5 but were reevaluated (Taylor, 1999) producing differing weights on both gaps, now equal to a = 1,5 and b = 1. This reexamination also provided an additional element to the re-sized weights, what became known as the Taylor principle. This principle states that employing a weight of (a > 1) will stabilize the macroeconomy with a more than one-to-one ratio of the nominal interest rate, creating a rise in the real interest rate dampening inflationary tendencies and slowing the economy (Ibid).
+
+This monetary policy rule created by Taylor, provides the outset from which this paper proposes: 1) By employing appropriate economic theory, established research and discourse, describe the modern historical monetary policies enacted by the MNB for the purpose of achieving its desired goals of macroeconomic stability. 2) Through a descriptive model accurately describe and analyze the MNBs monetary policy by the use of a modified rendition of the Taylor rule. With the aim of expanding the traditional Taylor rule to capture additional macroeconomic factors, determinant in explaining monetary policy by the MNB. And 3) augment and expand previous research in the field with modern data and estimates through sophisticated methodology and an empirical discussion, including the abnormal situation now facing many economies with ineffective monetary policy. 
+
+## Research question:
+ 
+*Given the stated objective of monetary policy established by the central bank of Hungary and the efforts exhausted to obtain that objective, is it possible using an extended rendition of the Taylor rule to accurately describe ex post monetary policy?*
+
+The sample period examined ranges from the year 2000 quarter one until 2020 quarter two, with data corresponding to eighty two observations per variable vector. In other words, the sample period envelops both the global events of The Great Recession and partially the lockdowns of 2019-2020. Representing two immensely important time periods in the forum of economics and financial analysis respectively. 
+
+
+# Literature Review
+
+This section aims to provide a comprehensive review of previous research and their contributions, in relation to the elected research problem and field of study. Demonstrating a current overview, including specific elements especially relevant to this paper in the established research. Encompassing research with differing methodologies and considerations, although with compelling, interesting and comparable results. 
+
+Since its inception by Taylor in 1993 Taylor type rules have benefitted from a variety of research into various areas, with differing degrees of success in empirically validating and expanding the initial framework. Applications of Taylor type rules in small open economies typically benefit from expansion of the original taylor rule. Both Österholm (2005), Balabay (2011) and Tarkhan-Mouravi (2009) apply the real effective exchange rate as a weighted index to extend the reaction function of the monetary policy transmission mechanism. 
+
+This addition is further supported by the theoretical estimation exercise conducted by Svensson (2000), which finds that the transmission mechanism of the interest rate is greatly significant in affecting the real effective exchange rate in Taylor type rules. Frömmel and Schobert (2006) finds that emerging economies in former soviet eastern Europe exhibit a “fear of floating”, with evidence of both explicit and implicit exchange rate targeting with either none or contradictory monetary policy goals. Emphasizing the importance of exchange rate policy shifts in monetary policy during sample periods. 
+
+Differences in exchange rate policy during the sample period is considered by Gerlach and Schnabel (1999) in the EMU area, indicating that the traditional Taylor type rule fails in accounting for movements in the Bundesbank nominal interest rate during periods of exchange rate market turmoil. Application in a UK study, Nelson (2001) considered the Taylor rule performance during the period ex ante and ex post ERM, with support for the Taylor rule after emergence from ERM effectively moving from exchange rate targeting to inflation targeting. 
+
+Related inquiries have been posed by researchers of Taylor type rules criticising both the econometric validity of aforementioned rules and their specifications. Christiano and Rostagno (2001) finds that not only does estimated Taylor type rules show signs of non-linearity, but also the possibility for multiple equilibria. Conditional on the current inflation (unique equilibria) or future inflation (multiple equilibria) is used for measurement. 
+
+The multiple equilibria argument is further supported by Benhabib, Schmitt-Grohe and Uribe (1999), emphasizing both model specification concerns and possible misinterpretation by economists. Benhabib, Schmitt-Grohe and Uribe exemplifies this by describing attempts made to estimate a slope of inflation around a steady state in the area which monetary policy is active, leading to a conclusion that monetary policy has always been active despite underlying evidence to the contrary.
+
+The specification of Taylor type rules for small open economies raises several important issues, Woodford (2001) argues that the output gap itself may not be linear and that using the detrended output for estimation of the output gap provides a poor explanatory account of inflation. Alternatively, Woodford argues that usage of the marginal cost of real unit labour, as the cost price ratio determines deadweight loss and incentives to raise prices, possess significant explanatory power of medium frequency variation in inflation. In contrast Judd, Rudebusch (1998) follows a similar construction of the potential output component of the output gap as the US federal reserve, with a time-varying natural rate of unemployment (NAIRU) in the context of a Phillips curve. Assuming a structural approach where the central bank considers the output gap, but also its relationship with future inflation. 
+
+Orphanides (2002 & 2003) considers the GDP deflator used by Taylor (1993) as an inappropriate measure of inflation, since such information is not available to policy makers ex ante. Orphanides also offers a growth rule  alternative to the traditional Taylor type rule, targeting “growth” and not “levels” of nominal income. Thus avoiding the pitfalls of natural-rate-gap policies, relying on the lagged value of the interest rate instrument for policy adjustment (delta (i) rather than (i)). Cukierman (2008) highlights the risk of preferences of positive versus negative gaps of inflation and output to the monetary authorities, i.e. ignoring negative gaps of inflation or positive gaps in output.  
+
+Other approaches regarding the interest rate in Taylor type rules are examined by Svensson (2000 & 2003), Nelson (2001), Frömmel and Schobert (2006) who employ interest rate smoothing, as central banks maintain momentum when adjusting monetary policy providing continuity and econometric stability. However, there is no consensus in this issue as Peersman, Smets (1999) maintains that more research is required in this area and the phenomenon needs to be better understood prior to becoming the standard. 
+
+Similar objections to traditional specifications are raised by Gerlach-Kristen (2003) regarding the inflation target, which they claim may not be constant. Suggesting that if the basis for the inflation target is rooted in the expectation hypothesis, the target assumption is not empirically valid. Due to market participants expectations of the future short term interest rates affecting the policy makers inflation objective (Ibid). Peersman, Smets (1999) emphasize the importance of an accurate estimate of the equilibrium of the real interest rate when implementing a Taylor type rule, as studies typically produce such estimates with significant uncertainty. 
+
+Radically, Svensson (2003) considers the concept of Taylor type rules to be in need of similar advancements made in microeconomics, applied to macroeconomic monetary policy. Suggesting that deriving Euler conditions of target variables through marginal rates of substitution and transformation, from the first order conditions of the central bank loss function will satisfy the need of specifying operational objectives and estimating proper target variables. 
+
+Econometric validity of findings in estimations of Taylor type rules are unfortunately intermittently ignored for convenience or remain otherwise untested of assumptions made, depending on the exercise undertaken. This has created irritation among researchers which emphasizes caution when conducting fitted estimations of Taylor type rules. Gerlach-Kristen (2003) show that traditional taylor rules forecast poorly out of sample, presenting an alternative estimation with explicit considerations to non-stationarity. Further support for such considerations is found by Österholm (2005) with in depth discussions of time series properties, as a requirement for i.e. cointegration of parameters, for long term relationships to be present in the system. 
+
+Orphanides (2002 & 2003) is concerned with both the information set available to monetary policy makers, as accurate “current” information is not available until ex post. And the distinction between hindsight of monetary policy fitting according to Taylor type rules compared to actual implementation of Taylor type rules. Orphanides exemplifies the definitions of “potential” and “normal'' as significant to policy makers given the information available ex ante versus ex post, when implementing monetary policy. 
+
+The operational views of central banks compared to the assumptions of theoretical models and specifications produce differing estimation techniques, reflecting either backward or forward looking behaviour. Clarida, Gali, Gertler (1998 & 2000) using a GMM estimation finds that the Bundesbank responds to anticipated inflation rather than lagged, supporting forward-looking behaviour. 
+
+Findings by Gerlach, Schnabel (1999) are in agreement when replicating Clarida, Gali and Gertlers study with inflation gap coefficient above unity. Moreover, it is supported in the Euro area by Gerlach, Kristen (2003) who finds that using the real interest rate in the short run captures the long run relationship more appropriately, again suggesting a forward-looking central bank. Svensson (2003) examines both forward and backward-looking models of Taylor type rules, finding support for both types of perspectives dependent on the specific rule used (instrument or targeting rule). 
+
+Christiano and Rostagno (2001) emphasizes through a cash-credit model the importance of fiscal policy in relation to monetary policy, with descriptions of household, firms and monetary and fiscal authorities. They argue that as governments must maintain solvency on government debt but not liabilities, a liquidity trap cannot constitute an equilibrium outcome in monetary policy. The study by Nelson (2001) likewise examines the complementation of fiscal and monetary policies, where income policies, food subsidies and cuts in indirect taxation and their effects are considered in attempts to control inflation during the ERM period of the UK. 
+
+Orphanides (2003) finds that reduced monetary policy activism has been consistent with more preferable outcomes since the Great Inflation, with some support from Svensson (2000) who argues that flexible inflation targeting is more effective and provides less room for activism compared to strict inflation targeting. Benhabib, Schmitt-Grohe and Uribe (1999) finds that active monetary policy near the inflation target increases risk of deflation, compared to passive monetary policy through e.g. interest rate or exchange rate peg. 
+
+
+# Theoretical Framework
+
+This section aims to describe and discuss the underlying theories and theoretical aspects of monetary policy that are relevant to the research problem and the construction of variables that will be used in the model. Limited theoretical assumptions and approximation of relationships are required and explained explicitly. Based on the framework developed by Friedman and Keynes respectively, as described by Sorensen & Jacobsen (2010). 
+
+## The money market and interest rate channel.
+
+The basis for monetary policy, and therefore monetary policy decisions, involves understanding the underlying theory of the market for money, since the demand for money will in turn affect the aggregate demand side of the entire economy and the real interest rate through the nominal interest rate (Sorensen & Jacobsen). This will serve as the principal foundation on which other theoretical elements will be based. 
+
+| At equilibrium the money market can be described by: 
+
+| $M/P = (L/Y,i)$  $L_{Y} = dL/dY > 0$ $L_{i} = dL/di$ $< 0$
+
+Where the left hand side represents the supply of real money balances,  $M =$ nominal money supply and P = price level. The right hand side describes the demand for money, $L(Y,i) =$ demand for real money balances. Note that the derivatives on the right hand side show real money balances varying positively with increased income and negatively with an increased nominal interest rate. As income increases so does liquidity requirements for transactions increasing the demand for money. And as the nominal interest rate increases, the demand for real money balances decreases, as the opportunity cost of holding cash balances increases. Meaning changes in income and the nominal interest rate affects the equilibrium of the money market directly. 
+
+This description of the money market has resulted in several varying monetary regimes among central banks. Friedman, under the assumption that the effect of active stabilization policy is limited, developed the constant money growth rule which can be described as:
+
+| $((1 + \mu) M_{-1})/((1 + \pi)P_{-1}) = kY^{n}e^{-B_{i}}$ eq1
+
+| $n$ = income elasticity of money demand
+| $B$ = semi-elasticity of money demand with respect to the interest rate (one percentage drop in real money demand against one percentage point increase of the interest rate).
+
+Where the central bank knows the structure of the money market and is able to implement its desired growth rate through adjustments in the nominal interest rate. It shows that prevailing price levels and nominal money supply from the previous period affects the current period's money supply. Assuming that the market was at its long run equilibrium during the previous period, the money supply will remain constant and only grow due to inflation (ignoring secular growth). 
+
+| $(\mu = \pi)$ eq2
+
+With the desire to balance supply and demand for real money balances, minimizing deviations from the equilibrium, policy makers adjust the short term interbank interest rate. These adjustments are made to ensure that future demand is settled with the money supply growing at a constant rate, ensuring that any future demand is not met with a shortage. It also underpins the formation of the short real interest rate, affecting output and unemployment on the aggregate level. 
+
+This also implies that at the long run equilibrium described above, inflation equals the desired growth rate and the real interest rate equals the natural interest rate. We can approximate the relationship between the nominal interest rate, the natural interest rate and inflation by:
+
+| $1+r^{a} = ((1+i)/(1+\pi_{+1}))$ eq3
+
+| Furthermore, it also implies:
+
+| $M_{-1}/P_{-1} = L^{*} = k\overline{Y}^{n}$ $e^{-B(\overline{r}-\mu)}$ eq4
+
+Where $L^{*}$ = long run value of the money stock itself. Note the change in semi-elasticity with the assumption of equation 4. Making an approximation of $ln(1+\mu) \approx\mu$ and $ln(1+\pi) \approx\pi$ and taking the logs of equation 4:
+
+| $\mu - \pi + lnL^{*} = ln k + ny - B_{i}$ eq5
+
+| Noting that the previous approximation that inflation equals the desired growth rate still applies, implies that:
+
+| $ln L^{*} = ln k + ny - B(\overline{r}-\mu)$ eq6
+
+By then substituting into equation equation 6 into equation 5 and isolating the nominal interest rate:
+
+| $i = \overline{r} + \pi + (1-B/B)(\pi -\mu) + (n/B)(y-\overline{y})$
+
+This resulting equation implies that for a central bank that aims at maintaining a constant growth rate of the money supply, it must adjust its nominal interest rate in accordance with changes in inflation and the output gap (both $(n)$ and $(B)$ are positive elasticities). It should be noted that if the same assumption made by Friedman is applied $(B<1)$, the nominal interest rate will increase with more than a one-to-one ratio with inflation (meaning a rise in the real interest rate). This formulation bears a striking resemblance to the original Taylor rule, the central bank may now set the nominal interest rate in consideration of two important components of macroeconomic stability, the inflation and output gaps. 
+
+Put differently, by setting the nominal interest rate in consideration to the levels of inflation (and inflation deviation) and the output gap, the short term real interest rate will be affected accordingly. Since increasing (or decreasing) the nominal interest rate will affect the short term real interest rate, it will have a weighted effect on both inflation and output gap. This provides the central bank with the ability to affect real economic variables through nominal changes in the economy, within the framework of the money market. The assumption that the long run inflation equals the desired growth rate of the money supply, also implies that the central bank attempts to keep inflation at a specific desired level, i.e. an inflation target for the long run equilibrium. 
+According to Taylor, a model of this type (constant money growth) frequently suggests that the reaction or policy decision of the central bank will generate a nominal interest rate change in the same direction, regardless of which parameter (inflation or output gap) is responsible. However, the size and timing of the change in nominal interest rate will differ depending on the causal origin (Taylor, 1999). 
+
+
+## Capital mobility and nominal interest rate parity under floating and fixed exchange rates.
+
+In an open economy with flexible exchange rates and interactive capital and goods markets, any arbitrage opportunities presented by differencing yields of assets will generate huge capital mobility. This would be problematic since large in and outflows of capital will affect output and inflation in both sender and recipient countries respectively. Given that capital mobility is perfect, nominal interest rates of open economies must present equal yields for such arbitrage opportunities to be rare or non existent, this can be formalized by the following condition known as the uncovered interest rate parity (UIP):
+
+| $1 + i = (1+i^{f})(E^{e}_{+1}/E)$ eq1
+
+Where (i) = the domestic nominal interest rate, $(i^{f})$ = the foreign nominal interest rate, $(E)$ = nominal exchange rate and $(E^{e})$ = nominal exchange rate expected to prevail in the next period. 
+
+This conditions states that an investor can either invest domestically and earn $(1 + i)$ amount of wealth in the current period (ignoring Fx forwards) or alternatively purchase $(1 / E)$ units of foreign currency giving an amount of wealth equal to $(1/E)(1+i^{f})$ in foreign currency. In simple terms, foreign and domestic investments must yield the same end-of-period wealth and thus have the same expected rate of return.
+
+| Taking the logs of both sides of this condition, where $(lnx = x)$ gives the approximate condition of:
+
+| $i = i^{f} + \overline{e}_{+1} - e  \overline{e}_{+1} = ln \overline{E}_{+1}$ 
+
+The first equation shows that if the domestic currency is expected to depreciate in the next period, the domestic nominal interest must rise to maintain interest rate parity. This would of course imply that the central bank defends a fixed exchange rate, which is not the case. However, there is an alternative, by allowing the domestic exchange rate to adjust to differences in the nominal interest rate, parity can be maintained with capital mobility with the central bank setting the nominal interest rate according to other monetary goals.
+
+Assuming that open economies maintain inflation targets similar to each other to achieve macroeconomic stability, and successfully attain this goal in the long term. It can be postulated that
+
+| $\pi^{*} = \pi^{f}$  -> $\Delta e = e - e_{-1}$ 
+
+The nominal exchange rate itself cannot serve as a nominal anchor for inflation given an open economy, but interest rate parity CAN be maintained by allowing the exchange rate to adjust. And by maintaining domestic inflation equal or close to foreign inflation the nominal exchange rate can remain stable. This means that appreciation and depreciation between currencies can be kept stable and minimize large changes in net-export. 
+
+Converging theory from capital mobility and the money market then implies that in the long run theoretical AS-AD model with a floating nominal exchange rate:
+
+| $\pi^{e} = \pi^{*}$ = average $\pi^{f}$
+
+Consider instead an open economy with perfect capital mobility and with a central bank that does NOT allow the nominal exchange rate to float freely. This encompasses several types of monetary policy regimes ranging from a completely fixed nominal exchange rate (or hard peg) to a relatively flexible bandwidth in which the nominal exchange rate is to remain (similar to stages before joining the EMU).
+
+Given the uncovered interest rate parity described above (equation 1) fixing the nominal exchange rate would imply that:
+
+| $e^{e+1} - e = 0$ thus $i = i^{f}$
+
+The domestic nominal interest rate is now equal to the foreign nominal interest rate, the central bank must, in order to defend the fixed exchange rate, adjust its nominal interest rate. In other words; should the central bank allow the domestic nominal interest rate to be below the foreign nominal interest rate, it would need to deplete its own foreign currency reserves to combat the outflow of capital when investors sell massive amounts of domestic currency and purchase foreign currency (which the central bank must facilitate). 
+
+Should the domestic nominal interest rate be higher than the foreign nominal interest rate, it would result in a massive inflow of capital and domestic inflationary pressure with a rising nominal exchange rate. Regardless of what type of fixed/bandwidth exchange rate regime is adopted, the central bank can no longer pursue independent monetary policy to regulate the domestic economy without considering the effects on the domestic nominal exchange rate. 
+
+Should however, the assumption of perfect capital mobility be relaxed and instead assume capital controls, i.e. capital in and outflows are regulated. Using the nominal exchange rate as an anchor becomes a possibility, as capital flows no longer require the central bank to exhaust its foreign currency reserves in the event of nominal interest rate disparity. Additionally, by keeping the nominal exchange rate fixed, international trade could benefit as calculations and contracts would be simplified and be perceived as more secure for future transactions. 
+
+Domestic inflation may also be controlled (even with a fixed nominal exchange rate) IF the domestic currency is pegged to another currency which exhibits a history of low domestic inflation. This is done by adjusting expected inflation by “importing” the success of the target peg. However, this relies on the target pegged currency being a credible, low inflation and stable economy to begin with.
+
+However, implementation of capital controls would be a heavy price to pay since it prevents efficient allocation of capital by investors and could disrupt or shift capital markets into less effective configurations. Moreover, it is immensely difficult to enforce in practice.
+
+
+## The AS-AD model for a small open economy 
+
+## AS-AD with fixed exchange rates.
+
+By applying the formalized framework for the long run open economy using the AS-AD model developed by Keynes, it is possible to contrast the importance of monetary policy from the two perspectives introduced in the setting of capital mobility.
+
+Assuming that the nominal exchange rate is fixed by the central bank and the real exchange rate is given by:
+
+| $E^{r} = (EP^{f} / P)$
+
+Implies that the change in the real exchange rate is given by:
+
+| $(e^{r} - e^{r_{-1}}) = (\pi^{f} - \pi)$ 
+
+| $(e^{r} = ln E^{r})$    $\pi^{f} = (ln P^{f} - ln P^{f{-1}}) = (ln P - ln P_{-1})$
+
+Domestic inflation must then correspond to foreign inflation if the real exchange rate is to remain stable in the long term equilibrium. In other terms, for the real exchange rate to remain stable in the long run equilibrium, any domestic inflation deviation from foreign inflation will be reflected in the real exchange rate forcing a response from the central bank. 
+
+If this monetary policy regime is credible to the agents in the market, any expected change  as well as the actual change in the exchange rate is expected to be equal to zero. Meaning:
+
+| $e = 0 = e^{e}$
+
+By implementing the fixed nominal exchange rate and assuming the ordinary wage rigidity associated with the long run equilibrium, into the standard AD function (see Sorensen & Jacobsen (2010) for complete derivation) it implies the following:
+
+| $(y - \overline{y}) = B_{1}(e^{r_{-1}} + \pi^{f} - \pi) - B_{2}(i^{f} - \pi^{e_{+1}} - r^{f}) + \overline{z}$
+
+| It is also important to note that:
+
+| $e^{r_{-1}} + (\pi^{f} - \pi) = e^{r_{t}}$
+
+Since we assume that the regime is credible, the impact on 1is naturally e^r alone since the difference in inflation must be equal to zero. This implies that domestic producers output, measured by the real exchange rate, fluctuates positively with aggregate demand. The aggregate supply function is assumed to remain unaltered from the standard form, based on relative wage resistance described above. 
+
+Inflation expectations e^e originate principally from two different outlooks; one which treats expectations as static (backward-looking) and one which treats expectations as weakly rational (forward-looking). Neither is considered to be dominant in a theoretical setting and for the purpose of the model in treating inflation expectations, it is prudent to formalize the idea that monetary policy is credible to the majority of agents. Meaning, domestic inflation is expected to follow foreign inflation that will act as an informal inflation target.
+
+| $\pi^{e} = \pi^{f} = \pi^{e_{+1}}$
+
+| Implementing this development into the AD function gives a more simplified version:
+
+| $(y - \overline{y}) = B_{1}e^{r_{-1}} - B_{2}(\pi - \pi^{f}) + \overline{z}$
+
+This means that the central bank itself cannot regulate inflation by active monetary policy other than anchoring its nominal exchange rate to a low-inflation currency, also known as “importing” inflation. Regardless, the domestic economy is now susceptible to nominal shocks in the form of foreign inflation of which the domestic central bank cannot address without harming its own credibility. The domestic economy is also at the mercy of speculative attacks, where large swings in currency valuation could strain the currency peg.
+
+
+## AS-AD with floating exchange rates.
+
+Consider now that the central bank allows the nominal exchange rate to float, it can now conduct independent monetary policy where the nominal interest rate is no longer an instrument of the fixed peg. Since the goal of the central bank is no longer to enforce a currency peg, it is free to pursue other goals such as inflation targeting (among others) in order to achieve macroeconomic stability.
+
+Assuming a monetary policy aimed at macroeconomic stability through inflation targeting, agents in the market would perceive that the inflation target will be equal to the average inflation rate in the long term. This corresponds to the agents being weakly rational (as in the fixed exchange rate example). Note the similarity of the assumption to the credible commitment to a fixed nominal exchange rate. We can formulate these expectations as:
+
+| $\pi^{e_{+1}} = \pi^{e} = \pi^{f} = \pi^{*}$
+
+Which comprehensively describes the link of the central banks inflation target and its credibility to the expectations of weakly rational agents in the market.
+
+In the absence of a credible fixed exchange rate target, agents will form new expectations regarding the level of the real exchange rate. Since they cannot forecast this accurately, their expectations will be static in nature. If the exchange rate is perceived by agents as deviating in either direction, it will normalize to the perceived normal level. This can be described as:
+
+| $e^{e_{t+1}} - e_{t} = \theta (\overline{e}_{t} - e_{t})$   $\theta> 0$
+
+Approximating the agents expectations on the latest observations and rewriting the previous equation:
+
+| $\overline{e}_{t} = e_{t-1} e^{e_{+1}} - e = \theta - (e-e_{-1})$
+
+It follows from the UIP that:
+
+| $\Delta e = e - e_{-1} = - \theta^{-1} (i - i^{f})$
+
+Combining the UIP and static expectations of agents gives a modified AD function:
+
+| $y - \overline{y} = B_{1}(e^{r}_{_-1} - \theta^{-1} (i- i^{f}) + \pi^{f} - \pi) + B_{2}(i - i^{f} + r^{f} - \overline{r}^{f}) + \overline{z}$
+
+| $-\theta^{-1}(i - i^{f})$ = exchange rate channel  $(i - i^{f})$ = interest rate channel
+
+Note that monetary policy will affect the AD function through two different channels under this regime. The exchange rate channel will respond to changes in the nominal interest rate between domestic and foreign currencies, affecting competitiveness and net exports. The interest rate channel, as per tradition, affects private investment and consumption. 
+
+Continuing with the assumption that the central bank actively pursues an inflation target, it follows that given:
+
+| $\pi^{*} = \pi^{f}$ and $\pi^{e_{+1}} = \pi^{e} = \pi^{*} = \pi^{f}$ -> $i = r^{f} + \pi^{f} + h(\pi - \pi^{f})$ -> $i^{f} = r^{f}-\pi^{f}$
+
+|  -> $i - i^{f} = h(\pi - \pi^{f})$
+
+Substituting into and rearranging the AD function gives:
+
+| $(y - \overline{y}) = B_{1}e^{r_{-1}} - \hat{B}_{1}(\pi - \pi^{f}) + \overline{z}$
+
+v $\hat{B}_{1} = B_{1} + h(B_{2} + \theta^{-1}B_{1})$
+
+| $\overline{z} = B_{2}(r^{f}-\overline{r}^{f}) + B_{3}(g-\overline{g}) + B_{4}(y^{f}-\overline{y}^{f}) + B_{5}(ln\epsilon - ln\overline{\epsilon})$
+
+Superficially, both exchange rate regimes exhibit the same AD function. Nonetheless, several important underlying differences need to be considered. 
+
+Assuming a flexible regime, active monetary policy can theoretically considerably dampen supply shocks, though with some fluctuations in output. Demand shocks theoretically can be greatly dampened to keep output and domestic inflation reasonably stable, through the use of both the interest rate channel and indirect exchange rate channel. These help absorb demand shocks and thus reduce variability of domestic inflation and output. 
+
+Assuming a fixed regime, the logical choice for a central bank determined to maintain a fixed regime without exhausting its foreign currency reserves, necessitates a currency peg with a low and stable inflation country. 
+
+The goal of monetary policy will dictate the choice of framework of monetary policy. Taking into account (level of) capital mobility, independence of the central bank (credibility) and systematic similarities/differences of trading countries (symmetry of shocks), will favor one of the two regimes to some extent. 
+
+
+## Central bank loss function with limited information.
+
+Assuming a more realistic stance of monetary policy with an open economy, the central bank possesses a limited information set when deciding the nominal interest rate. In the case of the current period, the central bank cannot directly observe the different shocks striking the economy. However, the central bank can observe inflation and output and their respective deviation from targets, with measurement error. If the credibility assumption of the central bank with inflation targeting is to hold, any consideration to the output gap cannot exceed the natural/potential level.
+
+Since shocks cannot be observed directly, the expected value of those shocks has to equal zero when conducting monetary policy. Put differently, the central bank cannot account for shocks that it cannot observe even with measurement error, when conducting monetary policy (usually referred to as the “inside” lag).
+
+Taylor (2001) argues that regardless of monetary policy rules employed, the responsibility of monetary policy by central banks is to minimize the welfare loss of price instability. 
+
+| Taylor proposes a quadratic welfare loss function formalized as:
+
+| $W = -\Omega(L+\pi^{*2}) + \zeta$
+
+For full derivation and explanation, see Taylor (2001). In this quadratic loss function, $(\pi^{*})$ can be interpreted as the inflation target, or according to Taylor: “$(\pi^{*})$ denotes the steady state of inflation associated with a given policy rule”. The variable $(\zeta)$ refers to factors independent of monetary policy. Where:
+
+| $L = var(\pi_{t}) + (\psi^{-1}-1) + var(\pi_{t} - E_{t-2}\pi_{t}) + \lambda var(E_{t-2}(\hat{Y}-\hat{Y}_{t}^{s}))$  $\lambda > 0$
+
+Where (L) measures the terms that depend solely on the inflation and output variability. It is important to note that the term (^*2) still creates some welfare loss even at the steady state level. Put differently, in order for the central bank to minimize welfare loss, price instability must be minimized, by controlling expected inflation and output deviation from their
+steady state levels. Increased price instability will generate more welfare loss as a product of expected variability in output and inflation from their steady state levels. 
+
+
+## The Taylor Rule and the Lucas critique.
+
+Invented by Taylor in 1993 the original Taylor rule consists of three variables dictating monetary policy for a small open economy with a flexible exchange rate. The nominal rate is determined by inflation deviation and output deviation from their target rates, with weights of both gaps determined by their respective importance by the central bank.
+
+| The original Taylor rule presented in the introduction is formalized as:
+
+| $i_{t} = r + a(\pi_{t}-\pi^{*}) + b(y_{t} - y^{*})$
+
+The weights $(a)$ and $(b)$ originally set at $0.5$ in Taylors original publication, equaling weights would then indicate an equal importance to monetary policy decisions. With this model, monetary policy decisions will remain ineffective in the current period, as policy decisions generally have an estimated two year lag (usually referred to as the “outside” lag). 
+
+Economists have since debated whether the weights should be determined differently and to what magnitude. E.g. a conservative central bank would put a larger weight on the inflation gap than on the output gap, signaling a more strict inflation targeting monetary policy regime. In its original form the rule is backward-looking, with previous inflation serving as expected inflation for the coming time period. Taylors original paper also discusses the case of a fixed exchange rate regime with a Taylor rule, under which a “world” nominal rate would be needed, since monetary policy is no longer independent and inflation targeting is not viable. 
+
+The critique by Lucas (1976) argues that structural models of macroeconomics may be misleading, when parameters of the models fail to capture changing underlying factors. The simplicity of models such as the Taylor rule and relying on historical data, may provide misleading outcomes if changes in the microfoundations are ignored. Agents expectations and behaviour is unlikely to remain unaltered if and when policy changes . Expectations of inflation and economic conditions by agents will impact policy and implicitly the outcome the model will produce vis a vis the reality (accuracy of forecasts). The principal of Lucas' argument is related to the fact that parameters in the model may implicitly depend on the policy regime at the time of measurement (Lucas, 1976). 
+
+
+# Data Description, Methodological Framework and estimation specifications
+
+This section will provide the methodological tools and concepts on which the technical part of the analysis and evaluation will rest, as well as data measurement, management and diagnostics performed. It is divided into three main sections, the first section presents a formal description of the local (or linear gaussian) state-space (SS) modelling framework, mainly the Kalman filter and the Autoregressive Markov Switching model extension of the SS framework. Since the state-space model encompasses both linear dynamic systems (most commonly used SS Models) and Hidden Markov Models, the purpose of employing both is to provide robustness to the study and additional analytical information. The second section provides the process of measuring and managing the empirical data, the third section the empirical estimation conducted and diagnostics performed for both models.
+
+
+## Time varying state-space model.
+
+The purpose of the state-space framework is to illuminate the evolution of the state of an underlying dynamic system. A generalized state-space model can be described as a dynamic system of equations, where one describes the state of the system and one describing observations associated with that system (Durbin and Koopman, 2014). The unobserved state vector and the observable vector are separate and evolve independently from each other, meaning observations of the system do not influence the state of said system at any point in time. More precisely, observation variables at time $(t)$ are independent of the entire state system given the state variables at time $(t)$. Observation variables do not directly influence the state system dynamics, but depend on the state of the system in question. The state itself can influence the observation variables, but vice-versa is not possible in any direct way.  
+
+The variables of the state equation are assumed to evolve according to a markovian process, where observations of the state system contain “noise” distorting measurements in terms of errors. By observing the visible and relevant stochastic processes of observable variables, it is possible to make inference of the properties of the state variable based on the observed knowledge of the observed outcome variables. Which are linearly dependent on the state variable. 
+
+A simple time varying state-space model can be formalized in the following way, with $(m)$ state variables and $(N)$ observable variables:
+
+| $y_{t} = Ax_{t} + Bv_{t}$       Observation equation
+| $x_{t} = Cx_{t-1} + Dw_{t}$     State equation
+
+The observation equation displays the observable vector $(y_{t})$ measured as a function of both the unobserved variable $(x_{t})$ as well as an error term, note that the measurement of variable $(y_{t})$ is “noisy” given the error term. It is assumed that $(x_{t})$ follows a random walk with no seasonal present, this implies that $(y_{t})$ and $(x_{t})$ distributions are dependent on $(t)$. Should this process be stationary, the solution would be straight forward analytically. 
+The state question shows that the state of the system is dependent on its previous state as well as a stochastic process of $(w_{t})$, where the state variable is assumed to follow an $AR(p)$ process. The coefficients of $(A)$ and $(B)$ are fixed system matrices of order $(N x m)$ and $(N x r)$, where $r =$ the dimensions of the disturbance vector in the observation equation. In a multivariate setting such as this paper, the system matrix $(A)$ contains the independent variables.
+
+Furthermore, the coefficients of $(C)$ and $(D)$ are again fixed system matrices of order $(m x m)$ and $(N x g)$, where again $(g) =$ the dimensions of the disturbance vector in the state equation. The error terms $(v_{t}$ and $w_{t})$ are assumed to be serially uncorrelated over time, with means of zero and with independent and unknown covariance matrices. Where $(v_{t})$ and $(w_{t})$ are $(r x 1)$ and $(g x 1)$ vectors respectively. Furthermore, it is assumed that $(B,C,D,v,w)$ are unknown and need to be estimated. 
+
+Distribution of errors is commonly assumed to be normally distributed, however this assumption is dependent on the type of derivation of the recursive procedure when estimating the model (Tanizaki, 1996). For the purpose of simplicity and derivation of the recursive procedure here, the errors are assumed to be normally distributed. Since the purpose of this paper is not to solve this problem analytically and neither to produce forecasts, the stationarity of the variables are not considered for the estimation procedure in the subsequent SS-model. 
+
+
+## The Kalman Filter.
+
+The Kalman filter developed by Kalman (1960,1963) involves a two stage process where the unobserved variable can be estimated given the observable data and its error through the construction of a likelihood function (Pichler, 2007). Employing the above assumptions, that the system is linear and that errors follow a normal probability distribution, the process uses a recursive prediction and correction approach. For full derivations of steps, likelihood function and complete discussion see Kalman 1960. 
+
+Assuming that possible values of the model parameters are known and equal to $A^{*},B^{*},v^{*},w^{*}$ and can be summarized by $A^{*},B^{*},v^{*},w^{*} = \Omega$. Using Bayes theorem and letting the likelihood function associated with the model and given parameters be denoted as:
+
+| $f(y_{1},y_{2}....y_{T};\Omega) = \prod_{t = 1}^{T} f(y|y^{t-1}; \Omega)$ 
+
+| where $y^{t-1} = (y_{1}, y_{2}...y_{t-1})$ for all $t>=2$
+
+Gives the likelihood function that are to be maximized:
+
+| $ln L (y^{T,\Omega}) = \prod_{t = 1}^{T} ln f(y|y^{t-1}; \Omega)$
+
+The prediction stage begins with the derivation of the initial state z0/0 and an estimate of the related covariance matrix $\sum_{0 | 0}^{z} = E[z_{0} - z_{0|0})(z_{0}-z_{0|0}]$. In this example it is assumed that this process is stationary, however this is not a requirement unless the filter operation is to solve a specific equation. Setting $t = 1 $giving:
+
+| $x_{t|t-1}$ and $\sum_{t|t_1}^x$ with the transition equation 
+| $x_{t|t-1} = Cx_{t|t-1}$ and $\sum_{t-1|t-1}^x C´+ \sum_{w}$
+
+It follows that $x_{t|t-1}$ can then be used to construct a forecast of $y_{t|t-1} = Ax_{t|t-1}$ given that we can observe the dependent variable in the observation equation. It also allows for the forecast error to be constructed according to:
+
+| $u_{t} = y_{t} - y_{t|t-1} = y_{t} - Ax_{t|t-1} = v_{t} + A(x_{t} - x_{t|t-1})$
+
+| Given that: $y_{t} = u_{t} + y_{t|t-1}$ leads to $f(y_{t}|y^{t-1};\Omega) = f(u_{t};\Omega)$
+
+Since it is possible to predict current values of the unobserved state based on previous state values, the need to construct future values depend on current values. In order to do this accurately the current values of the state predictions requires correction using the new information gained by estimated current values. 
+
+Put differently, based on previous states and error terms, current states and error terms have been produced by $x_{t|t-1}$ and $\sum_{t|t-1}^x$ but in order to construct future state values we need the current values of $x_{t|t}$ and $\sum_{t}^x$. These will allow for correction of predicted state values using new information. 
+
+Since we have observed the current value of $(y_{t})$ it is possible to correct the previous predictions of $x_{t|t-1}$ and $\sum_{t|t-1}^x$ according to Kalman (1960) formula:
+
+| $x_{t|t} = x_{t|t-1} + K_{t}(y_{t}-y_{t|t-1}) = x_{t|t-1} + K_{t}(y_{t} - Ax_{t|t-1})$
+
+| $\sum_{t|t-1}^x = \sum_{t|t-1}^x - K_{t}(\sum^v + A\sum_{t|t-1}^xA´)K_{t}$
+
+| Where: $K_{t} = \sum_{t|t-1}^xA´(A\sum_{t|t-1}A´+\sum^v)^{-1}$
+
+In words, combining the previous prediction of the state and the current prediction of the error in $(y_t$) it is possible to construct a linear corrected prediction of the unobserved state variable. Furthermore, due to the linearity, the choice of $(K_{t})$ is to minimize the variance in the prediction error. 
+
+This prediction and correction procedure is done recursively, moving back and forth between the prediction and correction steps respectively until $t = T$. When this point is reached the likelihood function can be constructed by the known model parameters according to:
+
+| $ln (y^{T},\Omega)= \prod_{t = 1}^{T} f(y|y^{t-1}; \Omega)$
+
+| Conditional on parameters  and $t = T$.
+
+When this recursive process is completed and all necessary matrices have been estimated and updated, producing smoothed and filtered states of the model. The prediction filtered states gives the distribution of the current (post estimate) state given the observations up to and including the current time index. The smoothed states gives the distribution of a past state/states, given the data up to the current time index, where the latter is to be employed in this paper.
+
+
+## Autoregressive Markov Switching model.
+
+In the field of economics, statistics and finance time series analysis is commonly plagued by the presence of structural breaks in the underlying data. This can generally cause problems with linear and non-linear estimators that may become unreliable given the non-stationarity (Hamilton, 2005). This usually represents events that dramatically change the behaviour of the data, e.g. new governmental policy or market condition that respond to a fundamental change in its environment, such as a financial crisis. 
+
+This “break” marks the end of one “period” within a time series and the beginning of a new one. Should estimates or forecasts be conducted without regard to the break, these will prove unreliable (ibid). However, these fundamental changes provide a point of inquiry for the underlying cause of these changes in regimes, that cannot be directly observed, but is present in the data. 
+
+By employing the modelling developed by Hamilton (2005), consider the time series variable $(y_{t})$ which can be modelled according to an autoregressive process described as:
+
+| $y_{t} = aS_{t} + \lambda y_{t-1} + \epsilon_{t}$
+
+| With $\epsilon \sim N(0,variance)$ for all $ t >= 1$ 
+
+Where $(S_{t})$ denotes the state variable which behaves as a stochastic variable that is the result of an exogenous change. Should a simple replacement of the constant term $(a)$, then representing a significant change in the average of the time series, provide an improvement in the estimate of $(y_{t})$, it would be considered a deterministic change clearly visible and thus completely predictable (Hamilton, 2005). Which would, naturally, explain the change in the time series after the time point where it was introduced. The state variable $(S_{t})$ captures these imperfectly predictable changes in the time series without assuming that they are deterministic and thus visible. The state variable is assumed to change over time and assume values of:
+
+| $S_{t} = 1$ for $t = 1,2,,,,, t_{k}$ and $S_{t} = 2$ for $t = t_{0} + t1, t_{0} +t2,,,,,$
+
+In order to describe the behaviour of $(S_{t})$ moving from one state/regime to another, a probabilistic model is required. A natural way of accomplishing this is to model the state of $(y_{t})$ as a markov chain of probabilities. Continuing with the simplicity of a two state markov chain:
+
+| $Pr(S_{t} = j|S_{t - 1} = i, S_{t - 2} = k,,,y_{t-1},y_{t-2})$
+| $= Pr(S_{t} = j|S_{t - 1} = i) = p_{ij}$
+
+Intuitively, this markov chain of probabilities relies on past values and is autoregressive, with an emphasis on the values of the most recent state/regime. Meaning that several different regimes may exist and transition between said states occurs, such transitions are infrequent and considerable time may pass between transitions. The degree of permanence of the regime or state is represented by the value of $(p_{ij})$. Which denotes the probability of transitioning from one state to another or remaining in the current state, represented as a probability matrix with its size equal to the number of states in the model. 
+
+This constitutes an autoregressive markov switching model, which allows for the parameters to vary across regimes and can be viewed as an unrestricted model. The regimes evolve exogenously of the time series in question and the dimension primarily depends on theoretical considerations of the underlying data as well as calculation restrictions.
+
+Similarly to the dynamic linear system model in the previous section, the state cannot be observed directly. However, the parameters of the model allow for inference of the probability of states within the model. In other words, the permanence of state $(ij)$ or emission/output probability is governed by a stochastic process where any transitions between states will be represented by a probability of remaining or transition in said state, based on inference of the observed parameters. 
+
+
+## Data collection and management.
+
+The composition of the underlying model developed by Taylor, is composed of five different elements with additional component(s) added as modifications of the traditional Taylor rule. The time period examined is defined as quarterly from the year 2000:1 to 2020:2. 
+
+The dependent column vector consists of the BOBUR, which is the three month interbank rate of Hungary issued by the central bank of Hungary (MNB). The interbank rate is issued monthly or minimum once per quarter depending on the need for adjustment decided by the Monetary Council (MNB, 2020). This data vector has been collected from the OECD database of main economic indicators reported in percentages, which are not seasonally adjusted. Harmonization of data points was achieved by taking the geometric mean for every quarter in absolute percentages points. This also ensures gaps in the data are eliminated, e.g. if a single rate is issued in a quarter automatically becomes that quarters geometric average. 
+
+The choice of the three month interbank rate rather than e.g. the one year government bond rate, is based on the direct impact on the banking system by central bank intervention and its relation to monetary policy. Other measurements such as the governmental bond rate present issues of rating of bonds, impact of pension funds and time of issuance for data collection. 
+
+The independent column vector of inflation consists of consumer price index (CPI) adjusted for food and energy, i.e. core inflation for Hungary measured quarterly as the annual growth rate from the previous period in percentages. The base year for the inflation measurement is 2015, is not seasonally adjusted, based on a fixed set of consumer goods and services in fixed quantities and weighted according to a large number of elementary aggregate indices (OECD). This data vector has been collected from the OECD database of main economic indicators. As inflation has been highly unstable in former soviet occupied countries, the choice of using core inflation provides more stable data with less outliers. Due to food and energy being more volatile in emerging economies. 
+
+Naturally, the column vector of target inflation is derived from the published reports of the MNB monetary Council, with the introduction of explicit inflation targeting with reference date december 2001 (MNB, 2020). Prior to this date managing price stability was the primary goal of the MNB, but not its sole goal. Aspiring entrance into the EMU was still pursued ex ante and ex post adoption of inflation targeting. As these two goals may not be fully compatible the MNB elected to let their currency float beginning in 2008 with inflation target adjustments being made every three to five years conditional on inflation forecasts and their realisations (MNB, 2020). 
+
+The independent column vector of output consists of real Gross Domestic Product for Hungary measured in millions of Hungarian national currency (Forint), reports are issued quarterly and being seasonally adjusted. The data for this vector has been collected from the OECD database of main economic indicators (OECD). Other measures of deviations from potential output, such as unemployment deviation from the NAIRU are not considered in this paper. 
+
+In addition to the conventional column vectors comprising the traditional Taylor rule, the Real Effective Exchange Rate (REER) is added to the open economy model. The REER adds an additional channel of transmission for monetary policy, as a potential intermediate target variable of MNB (Svensson, 2000). The REER consists of the real exchange rate of the Hungarian currency Forint against a basket of sixty economies weighted and indexed according to the size of trade with each basket country. The REER are derived as geometric weighted averages of bilateral exchange rates adjusted by consumer prices, reported monthly (BIS, 2020). Weights are derived from manufacturing trade flows with a time varying pattern, with weights being recalculated as recent as 2014-2016 (ibid). 
+
+The data has been collected from the Bank of International Settlements (BIS) and calculated according to the previously described manner. As with harmonizing the BOBUR, the monthly data points are converted to a geometric mean for all quarters in absolute percentage points. The choice of measurement being the weighted and indexed REER, is guided by the desire to capture changes in the real exchange rate in consideration of the major trading partners of Hungary. Rather than simply taking into account the largest one, the Euro area, thus capturing a wider relationship to Hungarian monetary policy. 
+
+Both the HMM and SS-model require the same basic variable construction, including the inflation gap, output gap and scaling of REER. Differences between variables of estimated equations will be due to limitations and/or adaptations of the two different models, then to be estimated in R using the MSWM (Markov Switching model) and KFAS (Dynamic Linear system model) packages respectively.
+
+Constructing the definition of the inflation gap was accomplished by subtracting the inflation target from the actual measure of core inflation. Data points in the inflation target vector prior to the introduction of inflation targeting was set to zero, making the inflation gap equal the core inflation (Kuzin, 2004). The output gap is defined by decomposing the real GDP using the Hodrick Prescott filter, to extract the trend and cyclical components respectively with the customary penalizing agent of =1600 for quarterly data (Hodrick and Prescott, 1997). The resulting trend component was then used as the denominator when taking the quotient of the natural log of real GDP and natural log of the trend component, multiplied by 100 for scaling. This procedure was repeated for the Forint REER indices, producing a REER gap of the actual indices for the basket of economies and the trend level of REER for said basket. 
+
+
+## HMM estimation, specifications and tests.
+
+The HMM estimation procedure, described above, requires that a gaussian linear model is estimated with the associated characteristics of OLS. Next, the expectation-maximization (or EM) algorithm is applied to the defined gaussian linear model (MSWM package). The HMM estimated consists of the modified taylor rule defined as:
+
+| $i_{t} = B_{1}(\pi_{t}-\pi_{t}^{*}) + B_{2}(y_{t} - y_{t}^{*}) +B_{3}(\rho_{t}-\rho_{t}^{*})(1-\rho) + i_{t-1} + \epsilon_{t}$
+
+| Where:
+
+| $i_{t} = $ BOBUR at time $t$
+| $(\pi_{t}-\pi_{t}^{*}) =$ inflation gap at time $t$
+| $(y_{t} - y_{t}^{*}) =$ output gap at time $t$
+| $(\rho_{t}-\rho_{t}^{*}) =$ REER gap at time $t$
+| $i_{t-1} =$ interest rate smoothing
+| $\epsilon_{t} =$ error term at time $t$
+
+One additional regressor is included in the form of a lagged dependent variable, this is due to strong autocorrelation of the residuals in the error term $t$. This effect is referred to as interest rate smoothing (Clarida, Gali, Gertler, 1998), which formalizes the tendency that central banks maintain momentum in changes of the nominal interest rate. Put differently, an increase in the nominal interest rate is rarely followed by a decrease, the movement maintains partial momentum. The coefficient of the lagged interest rate determines the degree of interest rate smoothing, with the term $\rho = \sum_{j=1}^\rho = \rho_{j}$ represents a persistence measure. 
+
+Stationarity tests for all variables were conducted according to the Augmented Dickey Fuller (ADF) test for a unit root, where the null could not be rejected for the BOBUR. However, all independent gap variables constructed indicate stationarity with rejected nulls for all unit root tests. Breakage-tests with unknown breakage points were conducted on all variables, inflation and output gaps respectively exhibited breaks in 2002 and 2010. 
+
+Determining the $AR(p)$ component of the HMM employed both Akaike Information Criterion (AIC) and Bayesian Information Criterion (BIC) were calculated for up to ten lags of each independent variable. Results of these tests were inconclusive and not pursued in modelling the $AR(p)$ component. Alternatively, a Partial Autocorrelation Function (PACF) was employed to determine the number of lags of each dependent variable with a maximum of five lags. The results for both the inflation and output gap variable suggest a lag length of one, The REER gap shows signs of seasonality with lag indications every three lags, consistent with a seasonal pattern of one per year. 
+
+Extended PCAF tests with a maximum of thirty lags rejected the hypothesis of a seasonal component in REER. The REER gap was estimated with a zero lag length. Furthermore, the intercept does not produce any meaningful result as it is likely not a constant and conditional on fluctuations in the Wicksellian rate of interest (Woodford, 2001).
+
+The number of regimes estimated is empirically indicated to be three; one per independent variable, excluding the lagged nominal rate. In the estimation process a three state regime was rejected on the basis that the model estimation matrix approaches singularity. Namely, a three regime model based on the underlying data could not be identified. Instead a two regime autoregressive model with time varying coefficients was estimated according to:
+
+| $(i_{t} - i_{t-1}) = B_{1}(\pi_{t} - \pi_{t}^{*}) + B_{2}(y_{t} - y_{t}^{*}) + B_{3}(\rho_{t} - \rho_{t}{*})(1-\rho) + i_{t-1} + \epsilon_{t}$  
+
+
+## State Space-model estimation and specification.
+
+The state space model with time varying coefficients was estimated according to the extended taylor rule described in the HMM section with one exception. The autoregressive element of interest rate smoothing was omitted on the basis that it did not add anything qualitatively to the results. Such a model was estimated in line with the autocorrelation argument but did not affect the coefficients in any meaningful manner, only increasing the parametrization of the model. 
+
+Excluding this parameter consequently did not produce any meaningful change in the smooth states. Disturbance matrices were specified with each state having an initial inherent disturbance (off-diagonal elements equal to zero) and covariances.. Allowing the smoothing algorithm to estimate appropriate initial values for all state vectors, where all independent state vectors were assumed to follow a random walk without a drift. Again the intercept is excluded in order to keep the model identifiable and not add an additional disturbance term (Helske, 2016). The estimated model for the state space configuration can be described according to:
+
+| $i_{t} = B_{1}(\pi_{t} - \pi_{t}^{*}) + B_{2}(y_{t}-y{t}^{*}) + B_{3}(\rho_{t} - \rho_{t}^{*}) + \epsilon_{t}$
+
+Where the smoothed states demonstrates the backward-looking updated conditional coefficients of the past states, providing a more accurate posterior account of the unobservable components of the state space configured modified Taylor rule.
+
+
+```{r results='hide', message=FALSE, warning=FALSE}
+
+#Data management
+
+PKGs = c("tidyverse","dplyr","readxl","ggplot2","dbplyr","zoo","lubridate","broom","tseries",
+         "quantmod","tframePlus","magrittr","tidyr","ggfortify","mFilter","KFAS","xts","aTSA",
+         "dynlm","tinytex","latexpdf","MSwM","strucchange","methods","stats","knitr",
+         "rmarkdown","utf8")
+
+lapply(PKGs, library, character.only = TRUE, quietly = TRUE)
+
+#Importing and checking data set
+Data1 = read.csv("Documents/Economics Master/Dissertation/Data & Empirics/data1.csv")
+
+```
+
+
+```{r}
+#Creating inflation and output gap variables
+Data2 = mutate(Data1, inf_gap = (core_inf - inf_target))
+
+HP = hpfilter(Data2[,5], freq=1600)
+
+Data3 = cbind(Data2, HP$trend)
+
+Data3 = mutate(Data3, output_gap = 100*log(gdp_real / HP$trend))
+
+Data3 = subset(Data3, select = -c(HP$trend, gdp_delta, gdp_real, inf_target, core_inf))
+Data4 = subset(Data3, select = c(date, IR3T_geomean, inf_gap, output_gap, HUF_60_geomean))
+
+
+#Creating REER gap
+HP1 = hpfilter(Data4[,5], freq=1600)
+
+Data5 = cbind(Data4, HP1$trend)
+
+Data5 = mutate(Data5, REER_gap = 100*log(HUF_60_geomean / HP1$trend))
+
+Data5 = subset(Data5, select = -c(HP1$trend))
+Data5 = subset(Data5, select = c(date, IR3T_geomean, inf_gap, output_gap, REER_gap))
+
+```
+
+```{r}
+#Cointegration tests for all coefficients
+coint.test(Data5$IR3T_geomean, Data5$inf_gap)
+#Not cointegrated
+
+coint.test(Data5$IR3T_geomean, Data5$inf_gap, nlag=1)
+#Not cointegrated
+
+coint.test(Data5$IR3T_geomean, Data5$inf_gap, d=1)
+#Cointegrated at 1 difference
+
+coint.test(Data5$IR3T_geomean, Data5$output_gap)
+#Not cointegrated
+
+coint.test(Data5$IR3T_geomean, Data5$output, nlag=1)
+#Not cointegrated
+
+coint.test(Data5$IR3T_geomean, Data5$output_gap, d=1)
+#Cointegrated at 1 difference
+
+coint.test(Data5$IR3T_geomean, Data5$REER_gap)
+#Not cointegrated
+
+coint.test(Data5$IR3T_geomean, Data5$REER_gap, nlag=1)
+#Not cointegrated
+
+coint.test(Data5$IR3T_geomean, Data5$REER_gap, d=1)
+#Cointegrated at 1 difference
+```
+
+
+```{r}
+#Stationarity tests for all coefficients
+adf.test(Data5$IR3T_geomean)
+#Non stationary
+
+adf.test(Data5$inf_gap)
+#Stationary
+
+adf.test(Data5$output_gap)
+#Stationary
+
+adf.test(Data5$REER_gap)
+#Stationary
+
+
+#Structural break diagnostics
+IR3T_ts = as.ts(Data5[,2])
+inf_gap_ts = as.ts(Data5[,3])
+output_gap_ts = as.ts(Data5[,4])
+REER_gap_ts = as.ts(Data5[,5])
+
+
+#IR3T break tests
+breakpoints_IR3T = breakpoints(IR3T_ts ~ 1)
+
+#Breakpoints and intervals
+summary(breakpoints_IR3T) 
+
+CIs_IR3T = confint(breakpoints_IR3T)
+
+#Plot breakpoints with intervals
+plot(IR3T_ts)
+lines(breakpoints_IR3T)
+lines(CIs_IR3T)
+axis(1, las = 2, at = c(0,10,20,30,40,50,60,70,80),labels = c("2000-Q1","2002-Q2","2004-Q4","2007-Q2","2009-Q4","2012-Q2","2014-Q4","2017-Q2","2019-Q4"))
+#Four breaks detected 2004 2009 2012 2017
+
+
+#Inflation gap break test
+breakpoints_inf = breakpoints(inf_gap_ts ~ 1)
+
+#Breakpoints and intervals
+summary(breakpoints_inf) 
+
+CIs_inf = confint(breakpoints_inf)
+
+#Plot breakpoints with intervals
+plot(inf_gap_ts, xaxt = "n", xlab = NA)
+lines(breakpoints_inf)
+lines(CIs_inf)
+axis(1, las = 2, at = c(0,10,20,30,40,50,60,70,80),labels = c("2000-Q1","2002-Q2","2004-Q4","2007-Q2","2009-Q4","2012-Q2","2014-Q4","2017-Q2","2019-Q4"))
+#Two breaks: 2002 and 2010
+
+
+#Output gap break test
+breakpoints_output = breakpoints(output_gap_ts ~ 1)
+
+#Breakpoints and intervals
+summary(breakpoints_output) 
+
+#Plot breakpoints with intervals
+plot(output_gap_ts, xaxt = "n", xlab = NA)
+lines(breakpoints_output)
+axis(1, las = 2, at = c(0,10,20,30,40,50,60,70,80),labels = c("2000-Q1","2002-Q2","2004-Q4","2007-Q2","2009-Q4","2012-Q2","2014-Q4","2017-Q2","2019-Q4"))
+##No breaks detected
+
+
+#REER gap break test
+breakpoints_REER = breakpoints(REER_gap_ts ~ 1)
+
+#Breakpoints and intervals
+summary(breakpoints_REER) 
+
+#Plot breakpoints with intervals
+plot(REER_gap_ts)
+lines(breakpoints_REER)
+axis(1, las = 2, at = c(0,10,20,30,40,50,60,70,80),labels = c("2000-Q1","2002-Q2","2004-Q4","2007-Q2","2009-Q4","2012-Q2","2014-Q4","2017-Q2","2019-Q4"))
+#No breaks detected
+```
+
+
+```{r}
+#Plots of all coefficients
+
+plot(Data1$core_inf, type = "line", xaxt = "n", xlab = NA, ylab = "Core inflation")
+abline(h = 0, col = "black")
+axis(1, las = 2, at = c(0,10,20,30,40,50,60,70,80),labels = c("2000-Q1","2002-Q2","2004-Q4","2007-Q2","2009-Q4","2012-Q2","2014-Q4","2017-Q2","2019-Q4"))
+```
+
+
+```{r}
+plot(Data5$IR3T_geomean, type = "line", xaxt = "n", xlab = NA, ylab = "Nominal rate") 
+abline(h = 0, col = "black")
+axis(1, las = 2, at = c(0,10,20,30,40,50,60,70,80),labels = c("2000-Q1","2002-Q2","2004-Q4","2007-Q2","2009-Q4","2012-Q2","2014-Q4","2017-Q2","2019-Q4"))
+```
+
+
+```{r}
+plot(Data5$inf_gap, type = "line", xaxt = "n", xlab = NA, ylab = "Inflation gap")
+abline(h = 0, col = "black")
+axis(1, las = 2, at = c(0,10,20,30,40,50,60,70,80),labels = c("2000-Q1","2002-Q2","2004-Q4","2007-Q2","2009-Q4","2012-Q2","2014-Q4","2017-Q2","2019-Q4"))
+```
+
+
+```{r}
+plot(Data5$output_gap, type = "line", xaxt = "n", xlab = NA, ylab = "Output gap", ylim = c(-14, 5))
+abline(h = 0, col = "black")
+axis(1, las = 2, at = c(0,10,20,30,40,50,60,70,80),labels = c("2000-Q1","2002-Q2","2004-Q4","2007-Q2","2009-Q4","2012-Q2","2014-Q4","2017-Q2","2019-Q4"))
+```
+
+
+```{r}
+plot(Data5$REER_gap, type = "line", xaxt = "n", xlab = NA, ylab = "REER gap")
+abline(h = 0, col = "black")
+axis(1, las = 2, at = c(0,10,20,30,40,50,60,70,80),labels = c("2000-Q1","2002-Q2","2004-Q4","2007-Q2","2009-Q4","2012-Q2","2014-Q4","2017-Q2","2019-Q4"))
+
+```
+
+
+
+```{r}
+#Autoregressive Markov Switching Model
+
+#new data set
+Data_HMM = as.data.frame(Data5)
+
+#Differencing policy rate
+Data_HMM$diff_IR3T = c(0, diff(Data_HMM$IR3T_geomean))
+
+Data_HMM = (subset(Data_HMM, select = c(diff_IR3T, inf_gap, output_gap, REER_gap)))
+
+
+#Estimating modified Taylor rule without lags for HMM-fit
+
+#As time series
+Data_HMM_ts = as.ts(Data_HMM)
+
+HMM2 = lm(diff_IR3T ~ -1 + inf_gap + output_gap + REER_gap, data = Data_HMM_ts, na.action=na.exclude)
+```
+
+
+```{r}
+#Determining correct number of lags for HMM
+
+order = 1:10
+
+BICs = sapply(order, function(x) 
+        "AR" = BIC(dynlm(ts(Data_HMM$REER_gap) ~ L(ts(Data_HMM$REER_gap), 1:x))))
+BICs
+
+AICs = sapply(order, function(x) 
+        "AR" = AIC(dynlm(ts(Data_HMM$REER_gap) ~ L(ts(Data_HMM$REER_gap), 1:x))))
+AICs
+
+pacf(Data_HMM$inf_gap, lag.max = 5)
+
+#1 lag
+
+pacf(Data_HMM$output_gap, lag.max = 5)
+
+#1 lag
+
+pacf(Data_HMM$REER_gap, lag.max = 30)
+
+#Suspected issue with seasonality (pacf plot shows spike in lag 3 = 1 year in quarters) but cannot decompose.
+#Problem averted, seasonality probability low with extended pacf plot
+
+#0 lag
+```
+
+
+```{r}
+#HMM fitted with interest rate smoothing
+model_HMM1 = msmFit(HMM2, k = 2, sw = c(T,T,T,F,T), p = 1)
+
+summary(model_HMM1)
+
+#plotting smoothed and filtered probabilities
+plotProb(model_HMM1, which = 1)
+axis(1, las = 2, at = c(0,10,20,30,40,50,60,70,80),labels = c("2000-Q1","2002-Q2","2004-Q4","2007-Q2","2009-Q4","2012-Q2","2014-Q4","2017-Q2","2019-Q4"))
+```
+
+
+```{r}
+#State-Space Model with Kalman Filtering
+
+#New data set for SSM
+Data_SSM = as.data.frame(Data5)
+
+Data_SSM_xts = xts(Data_SSM, order.by = as.Date(Data_SSM$date))
+
+#Defining variables
+y = ts(as.vector(as.numeric(Data_SSM_xts$IR3T_geomean)))
+
+x1 = ts(as.numeric(Data_SSM_xts$inf_gap))
+x2 = ts(as.numeric(Data_SSM_xts$output_gap))
+x3 = ts(as.numeric(Data_SSM_xts$REER_gap))
+
+#Model estimation and specification
+model1 = SSModel(y ~ -1 + SSMregression(~ x1 + x2 + x3, type = "common", Q=(diag(1, nrow=3, ncol=3))))
+
+smooth_states = coef(model1, states = "regression")
+
+#Confirming model
+is.SSModel(model1)
+
+#Alternative coefficient extraction (same results)
+out_model1 = KFS(model1, smoothing = c("state", "mean", "disturbance"))
+
+smooth_kfs = coef(out_model1, states = "regression")
+
+#Removing atomic vectors
+smooth_states1 = as.data.frame(smooth_states)
+```
+
+
+```{r}
+#Extracting standardized residuals from the smooth states
+
+#Standardized state residuals
+r_outmodel= rstandard(out_model1, type = c("state"))
+
+#Normal state residuals
+res_outmodel = residuals(out_model1, type = c("state"))
+mse = mean(res_outmodel^2)
+
+#Computing RMSE traditional way
+rmse = sqrt(mse)
+
+#Constructing confidence intervals
+up_x1 = (smooth_states1[,1] + (2*rmse))
+low_x1 = (smooth_states1[,1] - (2*rmse))
+
+up_x2 = (smooth_states1[,2] + (2*rmse))
+low_x2 = (smooth_states1[,2] - (2*rmse))
+
+up_x3 = (smooth_states1[,3] + (2*rmse))
+low_x3 = (smooth_states1[,3] - (2*rmse))
+
+
+#Preparing graphs for states with CIs
+state_CIs1 = as.data.frame(cbind(smooth_states1[,1], up_x1, low_x1))
+state_CIs2 = as.data.frame(cbind(smooth_states1[,2], up_x2, low_x2))
+state_CIs3 = as.data.frame(cbind(smooth_states1[,3], up_x3, low_x3))
+```
+
+## Empirical Results & Discussion
+even even even more text
+
+```{r}
+#Smooth state inflation gap
+plot(state_CIs1[,1], type = "line", xaxt = "n", xlab = NA, ylab = "Beta Inflation gap", ylim = c(-5, 6))
+lines(state_CIs1$up_x1, lty = 'dashed', col = 'blue')
+lines(state_CIs1$low_x1, lty = 'dashed', col = 'blue')
+abline(h = 0, col = "black")
+axis(1, las = 2, at = c(0,10,20,30,40,50,60,70,80),labels = c("2000-Q1","2002-Q2","2004-Q4","2007-Q2","2009-Q4","2012-Q2","2014-Q4","2017-Q2","2019-Q4"))
+```
+
+
+```{r}
+#Smooth state output gap
+
+plot(state_CIs2[,1], type = "line", xaxt = "n", xlab = NA, ylab = "Beta Output gap", ylim = c(-5, 5))
+lines(state_CIs2$up_x2, lty = 'dashed', col = 'blue')
+lines(state_CIs2$low_x2, lty = 'dashed', col = 'blue')
+abline(h = 0, col = "black")
+axis(1, las = 2, at = c(0,10,20,30,40,50,60,70,80),labels = c("2000-Q1","2002-Q2","2004-Q4","2007-Q2","2009-Q4","2012-Q2","2014-Q4","2017-Q2","2019-Q4"))
+```
+
+
+```{r}
+#Smooth state REER gap
+
+plot(state_CIs3[,1], type = "line", xaxt = "n", xlab = NA, ylab = "Beta REER gap", ylim = c(-5, 6))
+lines(state_CIs3$up_x3, lty = 'dashed', col = 'blue')
+lines(state_CIs3$low_x3, lty = 'dashed', col = 'blue')
+abline(h = 0, col = "black")
+axis(1, las = 2, at = c(0,10,20,30,40,50,60,70,80),labels = c("2000-Q1","2002-Q2","2004-Q4","2007-Q2","2009-Q4","2012-Q2","2014-Q4","2017-Q2","2019-Q4"))
+```
+
+
+```{r}
+inf_average = mean(Data1$core_inf)
+
+inf_average
+
+```
+
+
+
+```{r}
+#Extracting HMM conditional residuals
+HMM1_resid = msmResid(model_HMM1)
+
+#Extracting HMM regime unconditional residuals
+HMM1_resid1 = msmResid(model_HMM1, 1)
+HMM1_resid2 = msmResid(model_HMM1, 2)
+
+#Plotting all residuals
+plot(model_HMM1)
+```
+
+
+```{r}
+#Post estimation normality tests of smooth state residuals SS model
+res_outmodel_ts = ts(res_outmodel)
+
+#Ljung-box tests, H0 = no autocorrelation
+
+Box.test(res_outmodel_ts[,1], type = "Ljung-Box")
+#Autocorrelation
+
+Box.test(res_outmodel_ts[,2], type = "Ljung-Box")
+#Autocorrelation
+
+Box.test(res_outmodel_ts[,3], type = "Ljung-Box")
+#Autocorrelation
+
+
+#Jarque-Bera tests, normal, H0 = normal distribution
+jarque.bera.test(res_outmodel_ts[,1])
+#Normally distributed 
+
+jarque.bera.test(res_outmodel_ts[,2])
+#Normally distributed
+
+jarque.bera.test(res_outmodel_ts[,3])
+#Not normally distributed
+
+plot(res_outmodel_ts[,1])
+plot(res_outmodel_ts[,2])
+plot(res_outmodel_ts[,3])
+
+#Normality tests of HMM
+
+#Conditional residuals
+jarque.bera.test(HMM1_resid)
+#Not normally distributed
+
+#Residuals regime1
+jarque.bera.test(HMM1_resid1)
+#Normally distributed
+
+#Residuals regime2
+jarque.bera.test(HMM1_resid2)
+#Not normally distributed
+```
+
+
+```{r}
+#Test if coefficients are zero apriori 2014
+
+#Using states
+data_window1 = cbind(y, smooth_states1[,1], smooth_states1[,2], smooth_states1[,3])
+
+window1 = window(data_window1, start = 1, end = 60)
+
+states_window_apriori = lm(y ~ -1 + window1[,2] + window1[,3] + window1[,4] , data = window1)
+
+summary(states_window_apriori)
+
+#Using ordinary gap variables
+data_window2 = cbind(y, x1, x2, x3)
+
+window2 = window(data_window2, start = 1, end = 60)
+
+gaps_window_apriori = lm(y ~ -1 + window2[,2] + window2[,3] + window2[,4] , data = window2)
+
+summary(gaps_window_apriori)
+
+
+#Test if coefficients are zero post 2014-Q4
+window3 = window(data_window1, start = 60, end = 80)
+
+#Using states
+states_window_post = lm(y ~ -1 + window3[,2] + window3[,3] + window3[,4] , data = window3, na.action = na.exclude)
+
+summary(states_window_post)
+
+#Using ordinary gap variables
+window4 = window(data_window2, start = 60, end = 80)
+
+gaps_window_post = lm(y ~ -1 + window4[,2] + window4[,3] + window4[,4] , data = window4, na.action = na.exclude)
+
+summary(gaps_window_post)
+```
+
+
+
+# Conclusions
+
+
+
+
+
+
+# References
+
+Benhabib, Jess; Schmitt-Grohe, Stephanie; Uribe, Martin (1998) : The perils of Taylor Rules, Working Paper, No. 1998-31, Rutgers University, Department of Economics, New Brunswick, NJ, pp.1-17. 
+
+Balabay, O., 2011. Is The Taylor Rule A Good Approximation Of The Norwegian Monetary Policy?. Master of arts. Uppsala Universitet, Department of Economics, pp.5-38.
+
+Clarida, Richard, Jordi Gali, and Mark Gertler. 1998. “Monetary Policy Rules in Practice: Some International Evidence.” European Economic Review 42 (6): 1033-67. 		
+
+Clarida, Richard, Jordi Gali, and Mark Gertler. 2000. “Monetary Policy and Macroeconomic Stability: Evidence and Some Theory.” The Quarterly Journal of Economics 115(1), pp.147-180.	
+
+Christiano, L. and Rostagno, M., 2001. Money growth monitoring and the Taylor rule. National Bureau of economic research, [online] (1), pp.1-54. Available at: <https://www.researchgate.net/publication/5196511_Money_Growth_Monitoring_and_the_Taylor_Rule> [Accessed 20 October 2020].
+
+Cukierman, Alex & Muscatelli, Anton. (2008). Nonlinear Taylor Rules and Asymmetric Preferences in Central Banking: Evidence from the United Kingdom and the United States. Contributions to Macroeconomics. 8. 1488-1488. 10.2202/1935-1690.1488, pp.1-26.
+
+Durbin, J. and Koopman, S., 2014. Time Series Analysis By State Space Methods. 2nd ed. Oxford: Oxford University Press, pp.4-23.
+
+Encyclopedia Britannica. 2020. Hungary - World War I. [online] Available at: <https://www.britannica.com/place/Hungary/World-War-I> [Accessed 7 December 2020].
+
+Frömmel, M. and Schobert, F., 2006. Monetary Policy Rules in Central and Eastern Europe. Department of Economics, Leibniz Universität Hannover, [online] 1(1), pp.1-13. Available at: <https://ideas.repec.org/p/han/dpaper/dp-341.html> [Accessed 16 October 2020].	
+
+Gerlach-Kristen, Petra, 2003, Interest rate reaction functions and the Taylor rule in the euro area, ECB Working Paper, No. 258, European Central Bank (ECB), Frankfurt a. M. 
+
+Gerlach, S. and Schnabel, G., 1999. The Taylor Rule and Interest Rates in the EMU Area: A Note. SSRN Electronic Journal, 1, pp.1-4.
+
+Hodrick, R. and Prescott, E., 1997. Postwar U.S. Business Cycles: An Empirical Investigation. Journal of Money, Credit and Banking, 29(1), pp.1-12.
+
+Hamilton, James. (2008). Regime-Switching Models. 10.1057/9780230280830_23. pp.1-10.
+
+Helske, Jouni. (2016). KFAS: Exponential Family State Space Models in R. 
+
+Judd, John & Rudebusch, Glenn. (1998). Taylor's Rule and the Fed: 1970-1997. Economic Review. 3. pp.3-16. 
+
+Kuzin, V., 2006. The inflation aversion of the Bundesbank: A state space approach. Journal of Economic Dynamics and Control, 30(9-10), pp.1671-1686.
+
+Kalman, R. E. (1960): “A New Approach to Linear Filtering and Predic- tion Problems,” Transactions of the ASME–Journal of Basic Engineering, 82(Series D), 35–45.
+
+Lucas, R., 1976. Econometric policy evaluation: A critique. Carnegie-Rochester Conference Series on Public Policy, [online] (1), pp.19-46. Available at: <http://people.sabanciuniv.edu/atilgan/FE500_Fall2013/2Nov2013_CevdetAkcay/LucasCritique_1976.pdf> [Accessed 18 November 2020].	
+
+Mnb.hu. 2020. Exchange Rate Regime. [online] Available at: <https://www.mnb.hu/en/monetary-policy/monetary-policy-framework/exchange-rate-regime> [Accessed 5 December 2020].
+
+Mnb.hu. 2020. Inflation Targeting. [online] Available at: <https://www.mnb.hu/en/monetary-policy/monetary-policy-framework/inflation-targeting> [Accessed 5 December 2020].
+
+Mnb.hu. 2020. The Monetary Council. [online] Available at: <https://www3.mnb.hu/en/monetary-policy/the-monetary-council> [Accessed 5 December 2020].
+
+Mnb.hu. 2020. MNB Introduces A New Ten-Year Interest Rate Swap Facility To Encourage Banks’ Purchases Of Government Securities. [online] Available at: <https://www.mnb.hu/en/pressroom/press-releases/press-releases-2015/mnb-introduces-a-new-ten-year-interest-rate-swap-facility-to-encourage-banks-purchases-of-government-securities> [Accessed 5 December 2020].
+
+Nelson, Edward. (2001). UK Monetary Policy 1972-97: A Guide Using Taylor Rules. Central Banking, Monetary Theory and Practice: Essays in Honour of Charles Goodhart. 1. 10.4337/9781781950777.00020, pp.1-14.
+
+Orphanides, Athanasios, 2002. Activist stabilization policy and inflation: The Taylor rule in the 1970s, CFS Working Paper, No. 2002/15, Goethe University Frankfurt, Center for Financial Studies (CFS), Frankfurt a. M., http://nbn-resolving.de/urn:nbn:de:hebis:30-10050.
+
+Orphanides, A., 2003. Historical monetary policy analysis and the Taylor rule. Journal of Monetary Economics, 50(5), pp.983-1022.		
+
+OECD (2020), General government spending (indicator). doi: 10.1787/a31cbf4d-en [Accessed 05 December 2020].
+
+OECD (2020), Financial corporations debt to equity ratio (indicator). doi: 10.1787/a3108a99-en, [Accessed 05 December 2020].
+
+Pichler, P., 2007. 40461 Vektorautoregressive Methoden.
+
+Rzhevskyy, A., Papell, D. and Prodan, R., 2014. The Taylor Principles. SSRN Electronic Journal, pp.1-34.
+
+Svensson, Lars. (2000). Open–Economy Inflation Targeting. Journal of International Economics. 50. 10.1016/S0022-1996(98)00078-6, pp.1-29.
+
+Svensson, L., 2003. What Is Wrong with Taylor Rules? Using Judgment in Monetary Policy through Targeting Rules. Journal of Economic Literature, 41(2), pp.426-477.
+
+Smets, Frank & Peersman, Gert. (1999). The Taylor Rule: A Useful Monetary Policy Benchmark for the Euro Area?. International Finance. 2. 85-116. 10.1111/1468-2362.00020, pp.86-115.
+
+Taylor, John B. 1993. “Discretion versus Policy Rules in Practice.” Carnegie-Rochester Conference Series on Public Policy, 39: pp.195-214. 
+
+Taylor, John B. Monetary Policy Rules. Vol. 31, University of Chicago Press, 1999. pp.1-15, 92.
+
+Tarkhan-Mouravi, G., 2009. ESTIMATING TAYLOR-TYPE RULES IN CENTRAL AND EASTERN EUROPE. Master of Arts. Central European University, Department of Economics, pp.1-31.
+
+Tanizaki, H., 1996. Nonlinear Filters. 1st ed. Berlin: Springer, pp.1-14.
+
+Woodford, M., 2001. The Taylor Rule and Optimal Monetary Policy. American Economic Review, 91(2), pp.232-237.	
+
+Österholm, Pär. (2005). The Taylor Rule: A Spurious Regression. Bulletin of Economic Research. 57. pp.217-247. 
+
+
+## Empirical Sources
+
+Eurostat, Gross Domestic Product for Hungary [CPMNACSCAB1GQHU], retrieved from FRED, Federal Reserve Bank of St. Louis; https://fred.stlouisfed.org/series/CPMNACSCAB1GQHU, [Accessed December 4 2020].
+
+Organization for Economic Co-operation and Development, 3-Month or 90-day Rates and Yields: Interbank Rates for Hungary [IR3TIB01HUM156N], retrieved from FRED, Federal Reserve Bank of St. Louis; https://fred.stlouisfed.org/series/IR3TIB01HUM156N, [Accessed December 6 2020].
+
+Organization for Economic Co-operation and Development, (2020), Inflation (CPI) (indicator). doi: 10.1787/eee82e6e-en [Accessed 07 December 2020].
+
+Stats.bis.org. 2020. [online] Available at: <https://stats.bis.org/#df=BIS:BISWEB_EERDATAFLOW(1.0);dq=.R..HU%3FlastNObservations=6;pv=~4~0,0,0~name> [Accessed 7 December 2020].
+
+
+\end{document}
