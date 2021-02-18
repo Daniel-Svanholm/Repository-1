@@ -1,0 +1,285 @@
+---
+title: "Portfolio Risk & Volatility Assesment"
+author: "Msc Econ Daniel Svanholm"
+date: "2/8/2021"
+output: pdf_document
+---
+
+```{r setup, include=FALSE, warning=FALSE, message=FALSE}
+#Setup.
+PKGs = c("tidyverse","readxl","ggplot2","quantmod","ggfortify","KFAS","xts", "knitr", "kableExtra", "PerformanceAnalytics", "reshape2", "zoo", "dynlm", "stats", "strucchange", "lubridate", "broom", "tseries", "aTSA", "utf8", "fitdistrplus", "qualityTools", "urca", "timeSeries", "fPortfolio", "caTools")
+
+lapply(PKGs, library, character.only = TRUE, quietly = TRUE)
+```
+# Data Management.
+```{r}
+#Data formatting & assumptions checking for single asset & index comparison.
+starting.date = "2000-01-01"
+Microsoft.p = Ad(getSymbols("MSFT", auto.assign = FALSE, from = starting.date))
+Spy.p = Ad(getSymbols("SPY", auto.assign = FALSE, from = starting.date))
+Microsoft.r = dailyReturn(Microsoft.p)
+Spy.r = dailyReturn(Spy.p)
+Spy.re = Spy.r[-c(1)]
+Microsoft.re = Microsoft.r[-c(1,5299:5312)]
+#Removing excess rows unequal to index. 
+
+#Data consolidation and further formatting.
+table1 = cbind(Spy.re, Microsoft.re)
+est.data = as.data.frame(table1)
+colnames(est.data)[1] = "SandP500.re"
+colnames(est.data)[2] = "Microsoft.re"
+est.data = na.omit(est.data)
+
+#NOTE: Returns are calculated as percentage decimals price differences in USD, interpretations below therefore reflect daily percentage changes of price. 
+
+#Tests for breaks in data.
+Microsoft.re.ts = as.ts(est.data$Microsoft.re)
+breakpoints_Micro = breakpoints(Microsoft.re.ts ~ 1)
+#No breaks detected.
+
+SandP500.re.ts = as.ts(est.data$SandP500.re)
+breakpoints_SandP500 = breakpoints(SandP500.re.ts ~ 1)
+#No breaks detected.
+```
+
+Breaks were expected on at least one occasion (2008). However, since this is not the case one might conclude that this particular asset an index did not deviate from the historical mean value significantly as a results of the financial crises. Subsequently, it did not endure a change in mean after the financial crises. 
+
+```{r}
+#Looping to confirm absence of unit roots in data.
+
+nlag = NULL
+testvalue = NULL
+#Storage vectors for lags recommended by information criterion and ADF test statistic.
+
+for(i in 1:2){ 
+  x = ur.df(est.data[,i], type = "none", selectlags = "AIC")
+  a = x@lags
+  nlag = rbind(nlag, a)
+  b = x@teststat[1]
+  testvalue = rbind(testvalue, b) 
+}
+testresults = cbind(colnames(est.data), nlag, testvalue)
+testresults
+```
+First, stationarity is confirmed regardless of lags, AIC automatically refers to lag > 0 however since one lag is stationary zero lags will also be stationary. Secondly, the use of AIC instead of BIC is justified by the large number of observations, making the BIC statistic less advantageous compared to its AIC counterpart.
+
+# Distributional Properties.
+```{r}
+#Visual inspection of data for outliers and potential distribution.
+view(est.data$Microsoft.re)
+view(est.data$SandP500.re)
+hist(est.data$Microsoft.re)
+hist(est.data$SandP500.re)
+```
+Both vectors appear to follow an approximately gaussian/normal distribution according to the histograms.
+
+```{r}
+#Confirming distribution through third and fourth moment analysis.
+plotdist(est.data$Microsoft.re)
+descdist(est.data$Microsoft.re, boot = 1000, discrete = FALSE)
+
+#The Pearson plot is only indicative and not definitive, with less support for any distribution.
+distr1 = fitdist(est.data$Microsoft.re, "norm")
+plot(distr1)
+
+plotdist(est.data$SandP500.re)
+descdist(est.data$SandP500.re, boot = 1000, discrete = FALSE)
+
+#The Pearson plot is only indicative and not definitive, with less support for any distribution.
+distr2 = fitdist(est.data$SandP500.re, "norm")
+plot(distr2)
+```
+As is common with returns their distributions does appear to fit a gaussian/normal distribution better relative to other distributions and are stationary compared to their asset prices counterparts.
+
+```{r}
+cor(est.data$Microsoft.re, est.data$SandP500.re)
+```
+Standard correlation test indicate slightly high correlation between asset and index, to be compared to the estimated Beta.
+
+# VaR & CVaR for single asset case.
+```{r}
+#Simplistic Value at Risk & Conditional value at Risk/Expected Shortfall (assessing tail risk) given a single individual asset.
+
+#VaR and CVaR/ES of an individual asset using a five percent threshold.
+
+VaR(est.data$Microsoft.re, p = 0.95, method = "historical")
+```
+Ex post/Historical measure of probability of the fifth percentile value at risk. In other words: 95% of daily returns are expected to exceed this value with only 5% expected to be worse. 
+
+```{r}
+CVaR(est.data$Microsoft.re, p = 0.95, method = "historical")
+```
+Ex post/Historical measure of the probability of the fifth percentile value at risk IF the "worst case" threshold is crossed, meaning: the value at risk of the daily return in a worst case scenario. 
+
+The CVaR/ES being more conservative in potential loss of the individual asset, providing a relativistic clearer picture of risk associated with that asset. Further VaR/ES analysis continues after portfolio weights have been determined for a portfolio larger than a single asset.
+
+```{r}
+#VaR of each possible method argument for comparison to portfolio VaRs. 
+VAR.Historical = VaR(est.data$Microsoft.re, p = 0.95, method = "historical")
+VAR.Gaussian  = VaR(est.data$Microsoft.re, p = 0.95, method = "gaussian")
+VAR.Modified = VaR(est.data$Microsoft.re, p = 0.95, method = "modified")
+
+#Assembly of dataframe of resulting VaR values.
+VAR.dataframe = data.frame(rbind(VAR.Historical, VAR.Gaussian, VAR.Modified))
+rownames(VAR.dataframe) = c("Historical", "Gaussian", "Modified")
+colnames(VAR.dataframe)[1] = "Microsoft"
+```
+# Portfolio Management.
+```{r}
+#Constructing multiple asset portfolio for testing, using Microsoft, Apple and Amazon share prices. NO short positions are currently allowed (implemented further down).
+UW.portfolio = c("MSFT", "AAPL", "AMZN")
+getSymbols(UW.portfolio, from = starting.date)
+portfolio.p = na.omit(merge(Ad(MSFT), Ad(AAPL), Ad(AMZN)))
+portfolio.r = ROC(portfolio.p, type = "discrete")[-1]
+
+#Constructing portfolio weights using the efficient frontier of portfolios weights.
+portfolio.re = as.timeSeries(portfolio.r)
+effFront = portfolioFrontier(portfolio.re, constraints = "LongOnly")
+
+plot(effFront, c(1,2,3,8))
+```
+Plotting all possible portfolio combinations with risk vis a vis return on the efficient frontier in order to determine the optimal weights for the portfolio given the available assets with NO short positions. Highlighted in red = Minimum variance portfolio, in line = tangency portfolios and in dotted = sharp ratio. (other representations such as risk-return of each asset and Monte-Carlo portfolios are available). 
+
+Here we are interested in the minimum variance portfolio (highlighted in red) for the given risk/return ratios. The sharp ratios is considered but not exclusively determinant in choice of weights.
+
+```{r}
+frontweights = getWeights(effFront)
+#All possible efficient portfolio weights included on the frontier.
+
+risk.return = frontierPoints(effFront)
+#All target risk and return for every single point on the frontier.
+
+cor.matrix = cor(portfolio.re)
+cov.matrix = cov(portfolio.re)
+```
+Correlation and Covariance matrices of portfolio assets. Assets that are highly positively correlated increases volatility exposure and unsystematic risk. Negative covariances reduce overall portfolio risk and degree of negative correlation determines the degree of risk reduction. Perfectly/near perfectly negatively correlated assets could constitute ideal hedging but are fairly rare among asset groups, all assets contained in the portfolio belong to similar groups and are thus not expected to show negative correlation.
+
+```{r}
+mvp = minvariancePortfolio(portfolio.re, spec = portfolioSpec(), constraints = "LongOnly")
+```
+Extracting the minimum variance portfolio given the assets included. With the minimum variance approach, each asset in the portfolio will take the minimum variance position relative to their return. Constraints specify that only long positions are allowed (i.e positive portfolio weights).
+
+Given exclusive long positions, the expected return of any portfolio with weights in each asset can be calculated (in generalized form) as:
+
+$$
+E(r_{p}) = \sum^{n}_{i=1} w_{i} E(r_{i})
+$$
+For the portfolio variance (or standard deviation below) with same restrictions can be calculated (again in general form) as:
+
+$$
+\sigma^{2}_{p} = \sum^{n}_{i=1} \sum^{n}_{j=1}w_{i}w_{j} Cov(r_{i} r_{j})
+$$
+
+$$
+\sigma_{p} = \sqrt{(\sum^{n}_{i=1} \sum^{n}_{j=1}w_{i}w_{j} Cov(r_{i} r_{j})}
+$$
+With the optimal weights for the minimum variance portfolio being the highest return and lowest variance combination given the assets contained in said portfolio (represented on the efficient frontier as highlighted in red). The same results can of course be replicated by using the covariance matrix approach. 
+
+```{r}
+mvp.weights = getWeights(mvp)
+#Extracting the optimum weights of the minimum variance portfolio. 
+
+weights.df = data.frame(mvp.weights)
+assets = colnames(frontweights)
+ggplot(data = weights.df, aes(x = assets, y = mvp.weights, fill = assets)) +
+  geom_bar(stat = "identity", position = position_dodge(), colour = "black") + 
+  geom_text(aes(label = sprintf("%.02f %%", mvp.weights*100)),
+            position=position_dodge(width = 0.9), vjust = -0.25, check_overlap = TRUE) +
+  ggtitle("Minimum Variance Optimal Portfolio Weights") + theme(plot.title = element_text(hjust = 0.5)) + labs(x = "Assets", y = "Weights (%)")
+#Graphical representation of optimal weights of each asset in the minimum variance portfolio, again no short positions are allowed.
+
+#If short positions ARE allowed in the portfolio, new constraints needs to be defined.
+
+#Set specs for solver for 12 percent.
+Spec = portfolioSpec()
+setSolver(Spec) = "solveRshortExact"
+setTargetRisk(Spec) = .12
+constraints = c("minw[1:length(tickers)]=-1", "maxw[1:length(tickers)]=.60", "Short")
+#Constraints now allowing negative 100%/short 100% and max 60% weights in one asset.
+
+#Constructing a new efficient frontier given the new constraints.
+effFront.short = portfolioFrontier(portfolio.re, Spec, constraints = constraints)
+weights = getWeights(effFront.short)
+#New efficient frontier given that short positions in assets are allowed. Weights are reevaluated and extracted, with negative weights = short positions.
+
+plot(effFront.short, c(1,2,3))
+#Graphical representation of the new efficient frontier with short positions, including the minimum variance portfolio and tangency line.
+```
+NOTE: The minimum variance portfolio with short positions are similar to the one with exclusively long positions, with slightly lower variance.
+
+#Portfolio VaR & CVaR for multiple asset case.
+```{r}
+#Value at Risk & Conditional Value at Risk/ES given the minimum variance portfolio of assets.
+Cvar.portfolio = CVaR(portfolio.r, p = 0.95, weights = mvp.weights, portfolio_method = "component", method = "modified")
+```
+Using the optimal weights determined by the efficient frontier, the portfolio CVaR shows (as previously stated) the worst case scenario of the worst fifth percentile for the entire portfolio. 
+
+The portfolio method used is "modified", allowing for a multitude of distributions including gaussian/normal distribution of returns. If the distribution exhibits skewness or kurtosis other than accepted gaussian levels, the estimate is not affected, additionally should the distribution be gaussian the calculation still returns an accurate result. 
+
+The output can be explained as: MES = fifth percentile worst case loss is 3,78% single day loss. Contribution = The absolute contribution of individual asset to total loss in USD. And finally Pct/Percent Contribution = percentage contribution to overall worst case loss of each individual asset. 
+
+The last measurement should be compared to the optimal weights, as they relate to the percentage loss of each asset in the estimated worst case scenario. E.g. large percentage contribution to ES should be reflected by a smaller optimal weight. 
+
+Different estimates of VaR given different calculation methods available:
+```{r}
+VAR.portfolio.Historical = VaR(portfolio.r, p = 0.95, weights = mvp.weights, portfolio_method = "component", method = "historical")
+
+VAR.portfolio.Gaussian = VaR(portfolio.r, p = 0.95, weights = mvp.weights, portfolio_method = "component", method = "gaussian")
+
+VAR.portfolio.Modified = VaR(portfolio.r, p = 0.95, weights = mvp.weights, portfolio_method = "component", method = "modified")
+```
+Again, the output follows the same structure as the CVaR output: fifth percentile tail returns, contribution of each asset to total loss in absolute terms and finally percentage contribution of each asset to total loss contained in the fifth percentile. 
+
+```{r}
+VAR.dataframe$Portfolio = 0
+VAR.dataframe$Portfolio = c(VAR.portfolio.Historical[1], VAR.portfolio.Gaussian[1], VAR.portfolio.Modified[1])
+```
+Assembling the dataframe of both individual asset (Microsoft) and portfolio of assets for comparison of VaR given the different methods available. 
+
+In all cases the modified method provides a lower VaR estimate compared to a pure gaussian or historical methods. Also note that the portfolio consistently has a lower VaR then the individual asset, indicating diversification does lower risk measures. 
+
+```{r}
+VAR.dataframe$Portfolio = as.numeric(VAR.dataframe$Portfolio)#This annoys me.
+VAR.dataframe = abs(VAR.dataframe)
+VAR.dataframe$Type = c("Historical", "Gaussian", "Modified")
+
+plotVaR = melt(VAR.dataframe, variable.name = "Asset", value.name = "VaR")
+ggplot(plotVaR, aes(x = Type, y = VaR, fill = Asset)) + geom_bar(stat = "identity", position = "dodge")
+
+```
+
+# Volatility Measurements.
+```{r}
+#Volatility measurement of a single asset compared to index.
+
+#Re-specifying the parameters.
+y = est.data$SandP500.re
+x1 = est.data$Microsoft.re
+
+#OLS/CAPM model of beta describing average volatility in sample. 
+OLS.vol = dynlm(y ~ x1, data = est.data)
+
+summary(OLS.vol)
+```
+Less volatility of asset on average compared to index and less than the crude measure of correlation estimate (0.6917291 > 0.4446545). Meaning that this particular asset is less sensitive to overall market movements on average throughout the sample period (measurably less volatility compared to the overall market).
+
+State-Space estimated volatility (Volatility over time) with updated smooth posterior estimates. Similar to the average estimate of the linear regression, the estimates contain only information of previous outcomes/price changes and thus relies solely on historical data.
+
+```{r}
+#Time-varying model estimation and specification.
+SS.vol = SSModel(y ~ -1 + SSMregression(~ x1, type = "common", Q = (diag(1))))
+#Q matrix set as a random walk and the intercept is removed.
+
+smooth_states = coef(SS.vol, states = "regression")
+
+#Removing atomic vectors.
+smooth_states1 = as.data.frame(smooth_states)
+
+#Smooth state of stock returns compared to the overall market returns.
+plot(smooth_states1[,1], type = "line", xaxt = "n", 
+     xlab = NA, ylab = "Betas Volatility", ylim = c(0, 1))
+abline(h = 0, col = "black")
+axis(1, las = 2, at = c(0,1000,2000,3000,4000,5000),labels = c("2000","2004","2008","2012",
+"2016", "2020"))
+```
+This graph represents an ex post measurement of volatility of the single asset towards the over all market. The estimate is modeled after a random walk (as is the custom of stock data) and rarely exceed 0.5-0.6 excluding a few occasions. We can also observe the increased volatility measure just after the financial crises, indicating that even if systematic risk was lower prior to 2008 it did increase gradually during 2008-2012. The volatility measure then remained relatively low until mid 2015 which then experienced a gradual increase with a peak in 2020, coinciding with market unrest due to artificial lockdowns and incrased market uncertainty. 
